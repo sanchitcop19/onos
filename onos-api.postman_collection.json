@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "Onos Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "domain",
+      "value": "tenant1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Shared API",
+      "item": [
+        {
+          "name": "List Clients",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/clients"
+          }
+        },
+        {
+          "name": "List Domains",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/domains"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant API",
+      "item": [
+        {
+          "name": "List Members",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/client/{{domain}}/api/members"
+          }
+        },
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/client/{{domain}}/api/members",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"123-456-7890\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Member",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/client/{{domain}}/api/members/1"
+          }
+        },
+        {
+          "name": "Update Member",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/client/{{domain}}/api/members/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"987-654-3210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Member",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/client/{{domain}}/api/members/1"
+          }
+        }
+      ]
+    }
+  ]
+}
